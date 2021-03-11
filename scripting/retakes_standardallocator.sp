@@ -60,13 +60,28 @@ public void OnClientCookiesCached(int client) {
 }
 
 static void SetNades(char nades[NADE_STRING_LENGTH]) {
-    int rand = GetRandomInt(0, 3);
-    switch(rand) {
-        case 0: nades = "";
-        case 1: nades = "s";
-        case 2: nades = "f";
-        case 3: nades = "h";
+    int previous = -1; //previous random INT
+    int randNadeCount = GetRandomInt(1,2);
+    nades = "z";
+    while(randNadeCount--){
+        int rand = GetRandomInt(0, 5);
+        while(previous == rand)
+        {
+            rand = GetRandomInt(0,5);
+        }
+        previous = rand;
+
+
+        switch(rand) {
+        case 0: nades += "";
+        case 1: nades += "s";
+        case 2: nades += "f";
+        case 3: nades += "h";
+        case 4: nades += "m";
+        case 5: nades += "d";
     }
+    }
+    
 }
 
 public void WeaponAllocator(ArrayList tPlayers, ArrayList ctPlayers, Bombsite bombsite) {
@@ -84,6 +99,7 @@ public void WeaponAllocator(ArrayList tPlayers, ArrayList ctPlayers, Bombsite bo
     bool giveTAwp = true;
     bool giveCTAwp = true;
 
+    
     for (int i = 0; i < tCount; i++) {
         int client = tPlayers.Get(i);
 
@@ -96,7 +112,15 @@ public void WeaponAllocator(ArrayList tPlayers, ArrayList ctPlayers, Bombsite bo
             primary = "weapon_ak47";
         }
 
-        secondary = "weapon_glock";
+        int rand = GetRandomInt(0,2);
+
+        switch(rand){
+            case 0:  secondary = "weapon_glock";
+            case 1:  secondary = "weapon_p250";
+            case 2:  secondary = "weapon_deagle";
+        }
+
+       
         health = 100;
         kevlar = 100;
         helmet = true;
@@ -120,7 +144,13 @@ public void WeaponAllocator(ArrayList tPlayers, ArrayList ctPlayers, Bombsite bo
             primary = "weapon_aug";
         }
 
-        secondary = "weapon_hkp2000";
+        int rand = GetRandomInt(0,2);
+
+        switch(rand){
+            case 0:  secondary = "weapon_hkp2000";
+            case 1:  secondary = "weapon_p250";
+            case 2:  secondary = "weapon_deagle";
+        }
         kit = true;
         health = 100;
         kevlar = 100;

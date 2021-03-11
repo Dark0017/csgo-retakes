@@ -180,6 +180,7 @@ public void GiveWeapons(int client) {
             case 'i': weapon = "weapon_incgrenade";
             case 's': weapon = "weapon_smokegrenade";
             case 'd': weapon = "weapon_decoy";
+            case 'z': weapon = "weapon_taser";
         }
         GivePlayerItem(client, weapon);
     }
